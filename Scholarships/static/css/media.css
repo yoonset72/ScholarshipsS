@@ -1,0 +1,264 @@
+ /* Responsive */
+ @media (max-width: 1024px) {
+    .hero {
+        padding: 50px 40px;
+        flex-direction: column;
+    }
+
+    .hero h1 {
+        font-size: 36px;
+    }
+
+    .hero p {
+        font-size: 16px;
+    }
+
+    .cta-buttons {
+        justify-content: center;
+    }
+
+    .hero-image img {
+        width: 250px;
+        margin-top: 30px;
+    }
+
+    .features {
+        padding: 50px 40px;
+        flex-direction: column;
+        gap: 40px;
+    }
+
+    .feature {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    nav ul {
+        display: none; /* Hide navigation menu on smaller screens */
+    }
+
+    nav ul.active {
+        display: flex;
+        flex-direction: column;
+        background-color: white;
+        position: absolute;
+        top: 60px;
+        right: 20px;
+        width: 200px;
+        box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+    }
+
+    .hero {
+        padding: 30px 20px;
+        text-align: center;
+    }
+
+    .hero h1 {
+        font-size: 28px;
+    }
+
+    .hero p {
+        font-size: 14px;
+    }
+
+    .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .features {
+        padding: 30px 20px;
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero h1 {
+        font-size: 24px;
+    }
+
+    .hero p {
+        font-size: 14px;
+    }
+
+    .cta-buttons .btn {
+        width: 100%;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+    .features {
+        padding: 20px;
+    }
+}
+
+ /* Hide on small screens */
+
+ @media (max-width: 768px) {
+    .menu-toggle {
+        display: block; 
+    }
+
+    .nav-menu {
+        display: none; 
+    }
+
+    .nav-menu.active {
+        display: flex;
+        flex-direction: column;
+        background-color: white;
+        position: absolute;
+        top: 60px;
+        right: 20px;
+        width: 200px;
+        box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+    }
+
+    .right-nav {
+        display: none; 
+    }
+}
+
+
+/* features underline */
+@media (max-width: 1024px) {
+    .feature-link h3 {
+        font-size: 18px; 
+    }
+}
+
+@media (max-width: 768px) {
+    .feature-link {
+        padding: 10px; 
+        text-align: center; 
+    }
+
+    .feature-link h3 {
+        font-size: 16px; 
+    }
+
+    .feature-link h3::after {
+        height: 2px; 
+    }
+}
+
+@media (max-width: 480px) {
+    .feature-link h3 {
+        font-size: 14px; 
+    }
+
+    .feature-link {
+        padding: 8px;
+    }
+}
+
+/* apply */
+
+@media (max-width: 1024px) {
+    .scholarship-card {
+        max-width: 30%; 
+    }
+
+    .scholarship-section h2 {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 768px) {
+    .scholarship-card {
+        max-width: 45%; 
+    }
+
+    .scholarship-card h3 {
+        font-size: 0.9em; 
+    }
+
+    .scholarship-card p {
+        font-size: 0.75em;
+    }
+
+    .scholarship-section h2 {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .scholarship-container {
+        flex-direction: column;
+    }
+
+    .scholarship-card {
+        max-width: 100%; 
+    }
+
+    .scholarship-card h3 {
+        font-size: 0.85em; 
+    }
+
+    .scholarship-card p {
+        font-size: 0.7em; 
+    }
+
+    .scholarship-section h2 {
+        font-size: 12px; 
+    }
+}
+
+/* Country Mobile responsive design */
+@media (max-width: 600px) {
+    .country-card {
+        padding: 10px;
+    }
+
+    .country-card img {
+        width: 60px;
+    }
+
+    .country-card p {
+        font-size: 1em;
+    }
+
+    .country-section h1 {
+        font-size: 1.8em;
+    }
+}
+/* country 2 Responsive styling */
+@media (max-width: 600px) {
+    .country-row {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .country-name {
+        padding: 5px 0;
+    }
+}
+
+/* Descipline Responsive adjustments */
+@media (max-width: 1024px) {
+    .box {
+        flex: 0 0 30%; /* Show 3 boxes at once */
+        height: 220px; 
+    }
+}
+
+@media (max-width: 768px) {
+    .box {
+        flex: 0 0 40%; /* Show 2 boxes at once */
+        height: 200px;
+    }
+}
+
+@media (max-width: 480px) {
+    .box {
+        flex: 0 0 80%; /* Show 1 box at once */
+        height: 180px;
+    }
+
+    .arrow {
+        font-size: 1.5em;
+    }
+}

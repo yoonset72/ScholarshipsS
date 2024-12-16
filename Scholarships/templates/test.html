@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scholarship and Programme Search</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Search Scholarships and Programmes</h1>
+    </header>
+    <form method="POST">
+        <div>
+            <label for="countrySelect">Select Country:</label>
+            <select name="countrySelect" multiple>
+                <option value="USA">USA</option>
+                <option value="UK">UK</option>
+                <option value="Canada">Canada</option>
+                <option value="Australia">Australia</option>
+            </select>
+        </div>
+        <div>
+            <label for="gpa">GPA:</label>
+            <input type="text" name="gpa" placeholder="Enter your GPA">
+        </div>
+        <div>
+            <label for="programInput">Program:</label>
+            <input type="text" name="programInput" placeholder="Enter Program Name">
+        </div>
+        <div>
+            <label for="degreeSelect">Degree Level:</label>
+            <select name="degreeSelect">
+                <option value="Bachelors">Bachelors</option>
+                <option value="Masters">Masters</option>
+                <option value="PhD">PhD</option>
+            </select>
+        </div>
+
+        <!-- Filter Section -->
+        <h2>Filter by:</h2>
+        <div>
+            <h3>Location:</h3>
+            <label><input type="checkbox" name="location" value="USA"> USA</label><br>
+            <label><input type="checkbox" name="location" value="UK"> UK</label><br>
+            <label><input type="checkbox" name="location" value="Canada"> Canada</label><br>
+            <label><input type="checkbox" name="location" value="Australia"> Australia</label><br>
+        </div>
+        <div>
+            <h3>Grant:</h3>
+            <label><input type="checkbox" name="grant" value="Various Benefits"> Various Benefits</label><br>
+            <label><input type="checkbox" name="grant" value="Specific Grant"> Specific Grant</label><br>
+        </div>
+        <div>
+            <h3>Degree Type:</h3>
+            <label><input type="checkbox" name="degree" value="Bachelors"> Bachelor's</label><br>
+            <label><input type="checkbox" name="degree" value="Masters"> Master's</label><br>
+            <label><input type="checkbox" name="degree" value="PhD"> PhD</label><br>
+        </div>
+        <div>
+            <h3>Deadline:</h3>
+            <label><input type="checkbox" name="deadline" value="Anytime"> Anytime</label><br>
+            <label><input type="checkbox" name="deadline" value="Not Specified"> Not Specified</label><br>
+            <label><input type="checkbox" name="deadline" value="Specific Deadline"> Specific Deadline</label><br>
+        </div>
+        <button type="submit">Search</button>
+    </form>
+
+    {% if message %}
+        <p>{{ message }}</p>
+    {% endif %}
+</body>
+</html>

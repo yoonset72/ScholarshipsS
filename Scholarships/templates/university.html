@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programs List</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/media.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/university.css') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+   <!-- <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css" rel="stylesheet"> -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.css" rel="stylesheet"> 
+    <script type="text/javascript" src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.jquery.min.js"></script> <!-- Chosen JS -->
+    <style>
+      
+        .filters li {
+            margin-bottom: 20px;
+        }
+
+        .filters label {
+            font-weight: bold;
+            margin-right: 10px;
+            display: block;
+        }
+
+        .filter-checkbox-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .see-more,
+        .see-less {
+            color: #000000;
+            cursor: pointer;
+            font-size: 0.9em;
+            margin-top: 5px;
+            display: inline-block;
+            text-decoration: underline;
+        }
+
+        #program-select {
+            width: 300px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <a href="home.html">
+                <div class="logo">Elysian<span>Scholars</span></div>
+            </a>
+            <button class="menu-toggle" aria-label="Toggle navigation">
+                <span class="hamburger-icon">&#9776;</span>
+            </button>
+            <!-- <ul class="nav-menu">
+                <li><a href="#home">Explore</a></li>
+                <li><a href="#about">Decide</a></li>
+                <li><a href="#service">Apply</a></li>
+            </ul> -->
+            <div class="right-nav">
+              <div class="profile-section">
+                  <!-- Clickable profile icon -->
+                  <a href="{{ url_for('profile') }}">
+                      <i class="fas fa-user-circle profile-icon"></i>  <!-- Font Awesome profile icon -->
+                  </a>
+                  <p class="username">{{ username }}</p> <!-- Display username -->
+              </div>
+          </div>
+        </nav>
+    </header>
+
+    <h1>Master's degrees from all around the world</h1>
+    <div class="tabs">
+        <a href="{{ url_for('show_programmes') }}" class="tab-link">Scholarships</a>
+        <a href="{{ url_for('show_university') }}" class="tab-link">Programmes</a>
+    </div>
+
+    <div class="container">
+        <aside class="filter-sidebar">
+            <h2>Filter by</h2>
+            <ul class="filters">
+                <li>
+                    <!-- Country Filter with "See More" and "See Less" functionality -->
+                <li>
+                    <label>Location</label>
+                    <div id="location-checkboxes" class="filter-checkbox-group">
+                        <!-- Country checkboxes will be dynamically generated -->
+                    </div>
+                    <span class="see-more" id="see-more-btn">See More</span>
+                    <span class="see-less" id="see-less-btn" style="display: none;">See Less</span>
+                </li>
+                <li>
+                    <label for="program-select">Select a Program</label>
+                    <select id="program-select" name="mySelect" class="livesearch" multiple>
+                        <!-- Options will be loaded via JavaScript, preselected using session data -->
+                    </select>
+                </li>
+
+                <!-- Degree Type Filter -->
+                <li>
+                  <label>Degree Type</label>
+                  <div class="filter-checkbox-group">
+                      <label><input type="radio" name="degree-type" value="bachelors" {% if selected_degree=='Bachelor' %}checked{% endif %}> Bachelor's</label>
+                      <label><input type="radio" name="degree-type" value="masters" {% if selected_degree=='Master' %}checked{% endif %} > Master's</label>
+                      <!-- <label><input type="checkbox" name="degree-type" value="phd" {% if selected_degree=='PhD' %}checked{% endif %}> PhD</label> -->
+                  </div>
+              </li>
+            </ul>
+        </aside>
+
+        <main class="program-list">
+            {% if message %}
+            <p>{{ message }}</p>
+            {% else %}
+            <div class="card-container">
+                {% for programme in programmes %}
+                <div class="card">
+                    <h3>{{ programme['Provided Organization'] }}</h3>
+                    <div class="details-container">
+                        <div class="detail">
+                            <p><strong>Program:</strong>{{programme['Programme']}}</p>
+                            <p><strong>Amount:</strong> {{ programme['Scholarship Amount'] }}</p>
+                            <p><strong>Duration:</strong> {{ programme['Duration'] }}</p>
+                        </div>
+                        <div class="detail">
+                            <p><strong>Location:</strong> {{ programme['Organization Location'] }}</p>
+                            <a href="${university['Scholarship Link']}" target="_blank">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+            
+        </main>
+        <div class="back-btn">
+          <a href="/">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20 20V10.6L12 4 4 10.6V20a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1z"></path>
+                  <path d="M9 21V12h6v9"></path>
+              </svg>
+          </a>
+          <a href="/search">> Search</a>
+          <a href="/university">> University</a>
+      </div>
+   
+    </div>
+    <div class="pagination">
+        <button class="previous-btn" id="previous-btn">Previous</button>
+        <span id="page-number">Page 1</span>
+        <button class="next-btn" id="next-btn">Next</button>
+    </div>
+
+   <!-- JavaScript to Load JSON Data, Initialize Chosen Plugin, and Handle Filtering -->
+   <script>
+    $(document).ready(function () {
+      let university_data = {
+        universities: [], // Replace this with your actual data
+      };
+      // Initialize selected countries, degree, and programs
+      const selectedPrograms = "{{ selected_program|trim }}"
+        .split(",")
+        .map((p) => p.trim());
+      const selectedCountries = JSON.parse(
+        `{{ selected_countries|tojson|safe }}`
+      ); // Pre-selected countries from server
+      const selectedDegree = "{{ selected_degree }}".toLowerCase(); // Pre-selected degree from server
+       console.log(selectedDegree)
+      // Degree Type Arrays
+      const bachelorCountries = [
+        "Australia",
+        "Austria",
+        "Belgium",
+        "Canada",
+        "Croatia",
+        "Cyprus",
+        "Czech Republic",
+        "Finland",
+        "France",
+        "Germany",
+        "Greece",
+        "Hong Kong (SAR)",
+        "Hungary",
+        "India",
+        "Ireland",
+        "Israel",
+        "Italy",
+        "Lithuania",
+        "Malaysia",
+        "Malta",
+        "Mexico",
+        "Netherlands",
+        "New Zealand",
+        "Online",
+        "Poland",
+        "Portugal",
+        "Saudi Arabia",
+        "Singapore",
+        "South Africa",
+        "Spain",
+        "Sweden",
+        "Switzerland",
+        "Thailand",
+        "United Arab Emirates",
+        "United Kingdom",
+        "United States",
+      ];
+      const masterCountries = [
+        "Australia",
+        "Austria",
+        "Belgium",
+        "Canada",
+        "Croatia",
+        "Cyprus",
+        "Czech Republic",
+        "Denmark",
+        "Finland",
+        "France",
+        "Germany",
+        "Greece",
+        "Hong Kong (SAR)",
+        "Hungary",
+        "India",
+        "Ireland",
+        "Israel",
+        "Italy",
+        "Lebanon",
+        "Lithuania",
+        "Malaysia",
+        "Malta",
+        "Mexico",
+        "Netherlands",
+        "New Zealand",
+        "Norway",
+        "Online",
+        "Poland",
+        "Portugal",
+        "Saudi Arabia",
+        "Singapore",
+        "Slovenia",
+        "South Africa",
+        "Spain",
+        "Sweden",
+        "Switzerland",
+        "Thailand",
+        "United Arab Emirates",
+        "United Kingdom",
+        "United States",
+      ];
+
+      // DOM Elements
+      const countryCheckboxesContainer = document.getElementById(
+        "location-checkboxes"
+      );
+      const seeMoreBtn = document.getElementById("see-more-btn");
+      const seeLessBtn = document.getElementById("see-less-btn");
+      const programSelect = $("#program-select");
+      const loadingIndicator = document.querySelector(".loading-indicator");
+
+      
+      // Helper: Show/hide loading spinner
+      function toggleLoading(show) {
+        if (loadingIndicator) {
+          loadingIndicator.style.display = show ? "block" : "none";
+        }
+      }
+
+     // Render Only Pre-Checked Countries
+function renderCountries(degreeType) {
+    countryCheckboxesContainer.innerHTML = ""; // Clear previous checkboxes
+    const countries =
+        degreeType === "bachelors" ? bachelorCountries : masterCountries;
+
+    // Filter countries to only include pre-checked ones
+    const filteredCountries = countries.filter((country) =>
+        selectedCountries.includes(country)
+    );
+
+    filteredCountries.forEach((country) => {
+        const label = document.createElement("label");
+
+        // Pre-check selected countries
+        const isChecked = selectedCountries.includes(country) ? "checked" : "";
+        label.innerHTML = `
+            <input type="checkbox" name="location" value="${country}" ${isChecked}>
+            ${country}
+        `;
+        countryCheckboxesContainer.appendChild(label);
+    });
+
+    updateSeeMoreVisibility(filteredCountries); // Update visibility of 'See More' and 'See Less'
+}
+
+      // Update visibility of "See More" and "See Less"
+      function updateSeeMoreVisibility(countries) {
+        const extraCountries = document.querySelectorAll(".extra-country");
+        if (extraCountries.length > 0) {
+          seeMoreBtn.style.display = "inline";
+          seeLessBtn.style.display = "none";
+        } else {
+          seeMoreBtn.style.display = "none";
+          seeLessBtn.style.display = "none";
+        }
+      }
+
+      // Load the Programs Data and Initialize Select
+      function loadProgramData(degreeType) {
+        // Determine the JSON file based on the degree type (Bachelor's or Master's)
+        const programDataFile =
+          degreeType === "bachelor"
+            ? "bachelorProgrammes.json"
+            : "masterProgrammes.json";
+
+        toggleLoading(true); // Show loading spinner
+
+        $.getJSON(
+          "{{ url_for('static', filename='json/') }}" + programDataFile,
+          function (data) {
+            let initialCountry = null;
+
+            // Find initial country that contains the selected programs
+            for (const country in data) {
+              if (
+                selectedPrograms.some((program) =>
+                  data[country].includes(program)
+                )
+              ) {
+                initialCountry = country;
+                break;
+              }
+            }
+
+            // Populate Programs for the selected country
+            function populatePrograms(country) {
+              programSelect.empty(); // Clear previous options
+              data[country].forEach((program) => {
+                const option = $("<option>")
+                  .val(program.trim())
+                  .text(program.trim());
+                if (selectedPrograms.includes(program.trim())) {
+                  option.prop("selected", true);
+                }
+                programSelect.append(option);
+              });
+              programSelect.trigger("chosen:updated"); // Update Chosen Plugin
+            }
+
+            // Set initial selected country and populate programs
+            if (initialCountry) {
+              $(`input[name="location"][value="${initialCountry}"]`).prop(
+                "checked",
+                true
+              );
+              populatePrograms(initialCountry);
+            }
+
+            $(".livesearch").chosen(); // Initialize Chosen Plugin for the Program Select
+
+            // Event Listeners for Program Selection
+            programSelect.on("change", fetchFilteredData);
+
+            toggleLoading(false); // Hide loading spinner
+          }
+        ).fail(function () {
+          toggleLoading(false);
+          alert("Failed to load program data. Please try again later.");
+        });
+      }
+
+      // Fetch Filtered Data Based on User Selections
+
+      function fetchFilteredData() {
+        toggleLoading(true); // Show loading spinner
+
+        const selectedCountries = Array.from(
+          document.querySelectorAll('input[name="location"]:checked')
+        ).map((checkbox) => checkbox.value);
+        const selectedDegree =
+          document.querySelector('input[name="degree-type"]:checked')
+            ?.value || "";
+        const selectedPrograms = programSelect.val() || [];
+
+        // Debugging output
+        console.log(
+          "Selected Countries:",
+          selectedCountries,
+          selectedPrograms
+        ); // Log selected countries
+
+        fetch("/filter_universities", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            countries: selectedCountries,
+            degree: selectedDegree,
+            programs: selectedPrograms,
+          }),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            updateDisplay(data);
+            university_data = data;
+            toggleLoading(false); // Hide loading spinner
+          })
+          .catch((error) => {
+            console.error("Error fetching data:", error);
+            toggleLoading(false);
+            alert(
+              "An error occurred while fetching data. Please try again later."
+            );
+          });
+      }
+
+      // Update Display with Filtered Data
+      let currentPage = 1;
+      const cardsPerPage = 6;
+
+      function updateDisplay(data) {
+        const scholarshipsContainer =
+          document.querySelector(".card-container");
+        const pageNumber = document.getElementById("page-number");
+        const prevButton = document.getElementById("previous-btn");
+        const nextButton = document.getElementById("next-btn");
+
+        // Clear previous results
+        scholarshipsContainer.innerHTML = "";
+
+        if (
+          data &&
+          data.universities &&
+          Array.isArray(data.universities) &&
+          data.universities.length > 0
+        ) {
+          // Calculate pagination indices
+          const totalCards = data.universities.length;
+          const totalPages = Math.ceil(totalCards / cardsPerPage);
+          const startIndex = (currentPage - 1) * cardsPerPage;
+          const endIndex = startIndex + cardsPerPage;
+
+          // Slice the universities data for the current page
+          const universitiesToShow = data.universities.slice(
+            startIndex,
+            endIndex
+          );
+
+          // Append cards for the current page
+          universitiesToShow.forEach((university) => {
+            const card = document.createElement("div");
+            card.className = "card";
+            card.innerHTML = `
+                  <h3>${university["Provided Organization"]}</h3>
+                  <p><strong>Program:</strong> ${university["Programme"]}</p>
+                  <p><strong>Scholarship Amount:</strong> ${university["Scholarship Amount"]}</p>
+                  <p><strong>Duration:</strong> ${university["Duration"]}</p>
+                  <p><strong>Location:</strong> ${university["Organization Location"]}</p>
+                  <a href="${university["Scholarship Link"]}" target="_blank">Learn More</a>
+              `;
+            scholarshipsContainer.appendChild(card);
+          });
+
+          // Update pagination controls
+          pageNumber.textContent = `Page ${currentPage} of ${totalPages}`;
+          prevButton.disabled = currentPage === 1;
+          nextButton.disabled = currentPage === totalPages;
+        } else {
+          scholarshipsContainer.innerHTML =
+            "<p>No scholarships found for the selected criteria.</p>";
+        }
+      }
+
+      // Event listeners for pagination controls
+      document
+        .getElementById("previous-btn")
+        .addEventListener("click", () => {
+          if (currentPage > 1) {
+            currentPage--;
+            updateDisplay(university_data); // Call the updateDisplay function with the dataset
+          }
+        });
+
+      document.getElementById("next-btn").addEventListener("click", () => {
+        const totalCards = university_data.universities.length;
+        const totalPages = Math.ceil(totalCards / cardsPerPage);
+        if (currentPage < totalPages) {
+          currentPage++;
+          updateDisplay(university_data); // Call the updateDisplay function with the dataset
+        }
+      });
+
+      // Event Listeners for Filters
+      $("input[name='location']").on("change", function () {
+        const selectedCountry = $(this).val(); // Get the newly selected country
+        fetchFilteredData(); // Fetch data based on the new location
+        updateDisplay(); // Update the display based on the new data
+
+        if (selectedCountry) {
+          populatePrograms(selectedCountry); // Populate programs for the new country
+        }
+      });
+
+      $("input[name='degree-type']").on("change", fetchFilteredData); // Degree type filter
+      programSelect.on("change", fetchFilteredData);
+
+      // See More and See Less functionality for countries
+      seeMoreBtn.addEventListener("click", () => {
+        document
+          .querySelectorAll(".extra-country")
+          .forEach((label) => (label.style.display = "block"));
+        seeMoreBtn.style.display = "none";
+        seeLessBtn.style.display = "inline";
+      });
+
+      seeLessBtn.addEventListener("click", () => {
+        document
+          .querySelectorAll(".extra-country")
+          .forEach((label) => (label.style.display = "none"));
+        seeMoreBtn.style.display = "inline";
+        seeLessBtn.style.display = "none";
+      });
+
+      // Initially render countries based on the selected degree
+      renderCountries(selectedDegree);
+
+      // Load the correct programs based on the degree type
+      loadProgramData(selectedDegree);
+    });
+  </script>
+</body>
+</html>

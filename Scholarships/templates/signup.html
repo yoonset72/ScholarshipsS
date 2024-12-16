@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='fonts/material-design-iconic-font/css/material-design-iconic-font.min.css') }}">
+</head>
+<body>
+    <div class="wrapper">
+        <div class="inner">
+            <div class="image-holder">
+                <img src="{{ url_for('static', filename='img/home3.png')}}" alt="Registration Form">
+            </div>
+            <form method="POST" action="/signup">
+                <h3>Sign Up</h3>
+
+                <!-- Flash Messages -->
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                        <div class="messages-container">
+                            {% for category, message in messages %}
+                                <p class="{{ category }}">{{ message }}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                {% endwith %}
+
+                <!-- Form Fields -->
+                <div class="form-group">
+                    <input type="text" name="first_name" placeholder="First Name" class="form-control" required>
+                    <input type="text" name="last_name" placeholder="Last Name" class="form-control" required>
+                </div>
+                <div class="form-wrapper">
+                    <input type="text" name="username" placeholder="Username" class="form-control" required>
+                    <i class="zmdi zmdi-account"></i>
+                </div>
+                <div class="form-wrapper">
+                    <input type="email" name="email" placeholder="Email Address" class="form-control" required>
+                    <i class="zmdi zmdi-email"></i>
+                </div>
+                <div class="form-wrapper">
+                    <input type="password" name="password" placeholder="Password" class="form-control" required>
+                    <i class="zmdi zmdi-lock"></i>
+                </div>
+                <div class="form-wrapper">
+                    <input type="password" name="confirm_password" placeholder="Confirm Password" class="form-control" required>
+                    <i class="zmdi zmdi-lock"></i>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit">Register
+                    <i class="zmdi zmdi-arrow-right"></i>
+                </button>
+
+                <!-- Already a Member -->
+                <div id="sign-in">
+                    <a href="{{ url_for('login') }}">Already a Member?</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>

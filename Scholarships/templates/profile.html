@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+
+        .profile-card {
+            background-color: #fff;
+            width: 400px;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .profile-header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .profile-header .profile-icon {
+            font-size: 60px;
+            margin-right: 20px;
+        }
+
+        .profile-header .profile-info {
+            text-align: left;
+        }
+
+        .profile-header .profile-info p {
+            margin: 0;
+            font-size: 18px;
+        }
+
+        .profile-header .profile-info p.username {
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .profile-details {
+            text-align: left;
+            margin-bottom: 20px;
+        }
+
+        .profile-details div {
+            margin-bottom: 15px;
+        }
+
+        input[type="text"], input[type="email"], input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .password-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .password-wrapper input {
+            width: 90%;
+        }
+
+        .password-wrapper i {
+            cursor: pointer;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .buttons button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .buttons .save-btn {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .buttons .cancel-btn {
+            background-color: #f44336;
+            color: white;
+        }
+
+        .buttons button:hover {
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="profile-card">
+            <div class="profile-header">
+                <i class="fas fa-user-circle profile-icon"></i>
+                <div class="profile-info">
+                    <p class="username">Welcome</p> <!-- Display username -->
+                    <p>{{ user.first_name }} {{ user.last_name }}</p>
+                </div>
+            </div>
+
+            <form method="POST" action="{{ url_for('profile') }}">
+                <div class="profile-details">
+                    <div>
+                        <label for="first_name">First Name:</label>
+                        <input type="text" id="first_name" name="first_name" value="{{ user.first_name }}">
+                    </div>
+            
+                    <div>
+                        <label for="last_name">Last Name:</label>
+                        <input type="text" id="last_name" name="last_name" value="{{ user.last_name }}">
+                    </div>
+            
+                    <div>
+                        <label for="username">Username:</label>
+                        <input type="text" id="username" name="username" value="{{ user.username }}">
+                    </div>
+            
+                    <div>
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" value="{{ user.email }}" readonly>
+                    </div>
+            
+                    <div class="password-wrapper">
+                        <label for="password">Password:</label>
+                        <input type="password" id="password" name="password" value="{{ user.password }}" placeholder="Enter Password">
+                        <i class="fa fa-eye" id="toggle-password" onclick="togglePasswordVisibility()"></i>
+                    </div>
+            
+                    <div class="password-wrapper">
+                        <label for="new_password">New Password:</label>
+                        <input type="password" id="new_password" name="new_password" placeholder="Enter New Password">
+                        <i class="fa fa-eye" id="toggle-new-password" onclick="toggleNewPasswordVisibility()"></i>
+                    </div>
+            
+                    <div>
+                        <label for="confirm_password">Confirm New Password:</label>
+                        <input type="password" id="confirm_password" name="confirm_password" placeholder="Confirm New Password">
+                    </div>
+            
+                </div>
+            
+                <div class="buttons">
+                    <button type="submit" class="save-btn">Save Changes</button>
+                    <a href="{{ url_for('search') }}" class="cancel-btn">Cancel</a>
+                </div>
+            </form>
+            
+            
+        </div>
+    </div>
+
+    <script>
+        // Function to toggle current password visibility
+        function togglePasswordVisibility() {
+            var passwordField = document.getElementById("password");
+            var passwordIcon = document.getElementById("toggle-password");
+
+            if (passwordField.type === "password") {
+                passwordField.type = "text";
+                passwordIcon.classList.remove("fa-eye");
+                passwordIcon.classList.add("fa-eye-slash");
+            } else {
+                passwordField.type = "password";
+                passwordIcon.classList.remove("fa-eye-slash");
+                passwordIcon.classList.add("fa-eye");
+            }
+        }
+
+        // Function to toggle new password visibility
+        function toggleNewPasswordVisibility() {
+            var newPasswordField = document.getElementById("new_password");
+            var newPasswordIcon = document.getElementById("toggle-new-password");
+
+            if (newPasswordField.type === "password") {
+                newPasswordField.type = "text";
+                newPasswordIcon.classList.remove("fa-eye");
+                newPasswordIcon.classList.add("fa-eye-slash");
+            } else {
+                newPasswordField.type = "password";
+                newPasswordIcon.classList.remove("fa-eye-slash");
+                newPasswordIcon.classList.add("fa-eye");
+            }
+        }
+    </script>
+</body>
+</html>

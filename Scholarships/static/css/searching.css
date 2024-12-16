@@ -1,0 +1,104 @@
+h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #3d4040;
+  font-weight: bold;
+}
+ 
+.scholarship-search {
+  padding: 40px;
+  background-color: #d9e1e8;
+  border-radius: 20px;
+  max-width: 900px;
+  margin: 50px auto;
+}
+ 
+.search-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+ 
+.form-group {
+  display: flex;
+  flex: 1 1 calc(50% - 10px); /* Ensuring side-by-side layout */
+  flex-direction: column;
+}
+ 
+form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+ 
+select, input {
+  padding: 10px; /* Decreased padding */
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px; /* Decreased font size */
+  background-color: #fff;
+  box-sizing: border-box; /* Ensuring consistent width calculation */
+}
+ 
+input::placeholder {
+  color: #888;
+}
+ 
+ 
+.now-button {
+  background-color: #8acfdc;
+  color: white;
+  padding: 10px 20px; /* Decreased padding */
+  border: none;
+  font-size: 16px; /* Decreased font size */
+  border-radius: 8px;
+  cursor: pointer;
+  flex: 0 1 auto; /* Ensuring the button doesn't stretch */
+  margin-left: auto; /* Pushing the button to the right */
+}
+ 
+button:hover {
+  background-color: #8db2ba;
+}
+ 
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+ 
+@media (max-width: 768px) {
+  .form-group {
+    flex: 1 1 100%;
+  }
+ 
+  .now-button {
+    flex: 1 1 100%; /* Full width for mobile */
+    margin-left: 0; /* Reset margin for mobile */
+  }
+}
+ 
+.suggestions {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #fff;
+  max-height: 200px;
+  overflow-y: auto;
+  position: absolute;
+  z-index: 1000;
+}
+ 
+.suggestion-item {
+  padding: 10px;
+  cursor: pointer;
+}
+ 
+.suggestion-item:hover {
+  background-color: #e0e0e0;
+}

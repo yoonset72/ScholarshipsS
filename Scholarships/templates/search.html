@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduXpress - Scholarship Planner</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/media.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/searching.css') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>      
+</head>
+
+<body>
+    <div class="wrapper">
+        <img src="{{ url_for('static', filename='img/img1.png') }}" alt="">
+        <img src="{{ url_for('static', filename='img/img2.png') }}" alt="">
+        <img src="{{ url_for('static', filename='img/img3.png') }}" alt="">
+        <img src="{{ url_for('static', filename='img/img4.png') }}" alt="">
+        <img src="{{ url_for('static', filename='img/img5.png') }}" alt="">
+        <img src="{{ url_for('static', filename='img/img6.png') }}" alt="">
+        <img src="{{ url_for('static', filename='img/img7.png') }}" alt="">
+    </div>
+    <header>
+        <nav>
+          <a href="/">  <div class="logo">Elysian<span>Scholars</span></div> </a>
+
+            <!-- Menu toggle button for smaller screens -->
+            <button class="menu-toggle" aria-label="Toggle navigation">
+                <span class="hamburger-icon">&#9776;</span>
+            </button>
+
+            <ul class="nav-menu">
+                <li><a href="#country-selector">Explore</a></li>
+                <li><a href="#Descipline-section">Decide</a></li>
+                <li><a href="#Apply">Apply</a></li>
+            </ul>
+            <div class="right-nav">
+                <div class="profile-section">
+                    <!-- Clickable profile icon -->
+                    <a href="{{ url_for('profile') }}">
+                        <i class="fas fa-user-circle profile-icon"></i>  <!-- Font Awesome profile icon -->
+                    </a>
+                    <p class="username">{{ username }}</p> <!-- Display username -->
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <section>
+        <div class="scholarship-search">
+            <h1>Find Your Scholarship</h1>
+            <div class="search-container">
+                <form method="POST" action="{{url_for('show_programmes')}}">
+                <div class="form-group">
+                  <label for="degreeSelect">Select Degree Level:</label>
+                  <select id="degreeSelect" name="degreeSelect">
+                    <option value="" disabled selected>--Select Degree Level--</option>
+                    <option value="Master">Master</option>
+                    <!-- <option value="PhD">PhD</option> -->
+                    <option value="Bachelor">Bachelor</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                    <label for="countrySelect">Select Country:</label>
+                    <select id="countrySelect" name="countrySelect">
+                      <option value="" disabled selected>--Select a Country--</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                  <label for="programInput">Enter Program Name:</label>
+                  <input id="programInput" name="programInput" disabled="disabled" placeholder="Start typing a program name...">
+                </div>
+                <div class="form-group">
+                    <label for="programInput">Enter Your GPA:</label>
+                  <label for="gpa" class="sr-only">GPA (optional)</label>
+                  <input type="text" id="gpa" name="gpa" placeholder="GPA for scholarships (optional)">
+                </div>
+                <div class="form-group">
+                  <button type="submit" class="now-button">Search Now</button>
+                </div>
+              </form>
+            </div>
+          </div>
+            </section>
+
+    <!-- features -->
+    <section class="features" id="features">
+
+        <a href="#Apply" class="feature-link">
+            <div class="feature" >
+                <h3>How to Apply?</h3>
+                <p>"Transform your aspirations into reality: Apply now!"</p>
+            </div>
+        </a>
+
+        <a href="#Popular" class="feature-link">
+            <div class="feature">
+                <h3>Popular Scholarships</h3>
+                <p>"Explore your future with our top scholarships!"</p>
+            </div>
+        </a>
+
+        <a href="#Country" class="feature-link">
+            <div class="feature">
+                <h3>By Country</h3>
+                <p>"Discover scholarships tailored for your location!"</p>
+            </div>
+        </a>
+
+        <a href="#Descipline-section" class="feature-link">
+            <div class="feature" id="Discipline">
+                <h3>By Discipline</h3>
+                <p>"Discover scholarships that match your academic journey!"</p>
+            </div>
+        </a>
+
+    </section>
+
+    <!-- Apply for scholarship -->
+
+    <section class="apply-section" id="Apply">
+        <h2>Apply for Scholarships</h2>
+        <div class="apply-container" >
+            <div class="apply-card">
+                <img src="../static/img/scho.jpg" alt="What is a Scholarship?">
+                <h3>What is a Scholarship?</h3>
+                <p>Discover how scholarships provide financial aid based on merit or need, covering tuition and more.
+                </p>
+                <div class="card-footer">
+                    <span class="read-time">9 min read</span>
+                    <a href="https://www.youtube.com/watch?v=nEzmT03p3D0" class="cta-link">Learn more</a>
+                </div>
+            </div>
+            <div class="apply-card">
+                <img src="../static/img/apply.jpg" alt="How to Apply for Scholarships?">
+                <h3>How to Apply for Scholarships?</h3>
+                <p>Find out how to effectively apply for scholarships by locating the right ones and preparing the necessary documents.</p>
+                <div class="card-footer">
+                    <span class="read-time">11 min read</span>
+                    <a href="https://www.youtube.com/watch?v=PBqWcfa5lbA" class="cta-link">Get started</a>
+                </div>
+            </div>
+            <div class="apply-card">
+                <img src="../static/img/moti.png" alt="How to write a Scholarship Motivation Letter?">
+                <h3>How to write a Scholarship Motivation Letter?</h3>
+                <p>Create a persuasive motivation letter by sharing your story and showcasing your unique writing style.</p>
+                <div class="card-footer">
+                    <span class="read-time">10 min read</span>
+                    <a href="https://www.youtube.com/watch?v=fpmE0ug_wNc" class="cta-link">See how</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<!-- Popular Scholarship -->
+<section class="scholarships-section" id="Popular">
+    <div class="scholarships-header">
+        <h2>Popular Scholarships</h2>
+        <a href="#" class="see-all-link">See all scholarships</a>
+    </div>
+
+    <div class="scholarships-container">
+        <!-- First scholarship -->
+        <a href="https://www.monash.edu/" class="scholarship-card">
+            <div class="scholarship-details">
+                <div class="card-header">
+                   <h3>MRS Resident Advisor Scholarship</h3><br>
+                            <p class="scholarship-type"> Monash University</p>
+                </div>
+                <div class="scholarship-body">
+                    <p class="deadline"><strong>Deadline:</strong> Not specified</p>
+                </div>
+                <div class="apply-section">
+                    <button class="apply-btn" >See If You Qualify</button>
+                </div>
+            </div>
+            <img src="../static/img/scho1.jpg" alt="Coca-Cola Scholarship" class="scholarship-img">
+        </a>
+
+        <!-- Second scholarship -->
+        <a href="https://www.newcastle.edu.au/" class="scholarship-card">
+            <div class="scholarship-details">
+                <div class="card-header">
+                    <h3>International Excellence Scholarship</h3><br>
+                    <p class="scholarship-type">University of Newcastle</p>
+                </div>
+                <div class="scholarship-body">
+                    <p class="deadline"><strong>Deadline:</strong>  Anytime</p>
+                </div>
+                <div class="apply-section">
+                    <button class="apply-btn">See If You Qualify</button>
+                </div>
+            </div>
+            <img src="../static/img/scho2.jpg" alt="Dr Pepper Scholarship" class="scholarship-img">
+        </a>
+
+             <!-- Third scholarship -->
+             <a href="https://www.temple.edu/" class="scholarship-card">
+                <div class="scholarship-details">
+                    <div class="card-header">
+                        <h3>Merit Scholarships</h3><br>
+                        <p class="scholarship-type">Temple University</p>
+                    </div>
+                    <div class="scholarship-body">
+                        <p class="deadline"><strong>Deadline:</strong>Not specified</p>
+                    </div>
+                    <div class="apply-section">
+                        <button class="apply-btn">See If You Qualify</button>
+                    </div>
+                </div>
+                <img src="../static/img/scho4.png" alt="Dr Pepper Scholarship" class="scholarship-img">
+            </a>
+
+                  <!-- Fourth scholarship -->
+                  <a href="https://www.beds.ac.uk/" class="scholarship-card">
+                    <div class="scholarship-details">
+                        <div class="card-header">
+                            <h3>Chevening Scholarships</h3><br>
+                            <p class="scholarship-type">University of Bedfordshire</p>
+                        </div>
+                        <div class="scholarship-body">
+                            <p class="deadline"><strong>Deadline:</strong>  Not specified</p>
+                        </div>
+                        <div class="apply-section">
+                            <button class="apply-btn">See If You Qualify</button>
+                        </div>
+                    </div>
+                    <img src="../static/img/scho3.jpg" alt="Dr Pepper Scholarship" class="scholarship-img">
+                </a>
+    </div>
+</section>
+
+<!-- Country Selection -->
+
+<section class="country-section" id="Country">
+    <div class="scholarships-header">
+        <h2> Popular Countries</h2>
+        <a href="#country-selector" class="see-all-link">View all countries</a>
+    </div>    <div class="country-container">
+        <div class="country-card">
+         <a href=""><img src="https://flagcdn.com/w320/us.png" alt="USA Flag">
+            <p>United States</p>
+        </a> 
+        </div>
+        <div class="country-card">
+            <a href="">
+            <img src="https://flagcdn.com/w320/gb.png" alt="UK Flag">
+            <p>United Kingdom</p> </a>
+        </div>
+        <div class="country-card">
+            <a href="">
+            <img src="https://flagcdn.com/w320/ca.png" alt="Canada Flag">
+            <p>Canada</p> </a>
+        </div>
+        <div class="country-card">
+            <a href="">
+            <img src="https://flagcdn.com/w320/au.png" alt="Australia Flag">
+            <p>Australia</p>
+        </a>
+        </div>
+    </div>
+</section>
+<!-- Country Selection 2 -->
+
+<div class="country-selector" id="country-selector">
+    <h1>Explore Scholarships by Countries</h1>
+    <div class="country-grid">
+        <div class="country-row">
+           <a>  <span class="country-name">Australia</span> </a>
+           <a> <span class="country-name">Canada</span> </a>
+            <a> <span class="country-name">Belgium</span> </a>
+            <a> <span class="country-name">Czech Republic</span> </a>
+        </div>
+    
+        <div class="country-row">
+           <a> <span class="country-name">Finland</span> </a>
+            <a> <span class="country-name">France</span> </a>
+           <a>  <span class="country-name">Germany</span> </a>
+           <a>  <span class="country-name">Thailand</span> </a>
+        </div>
+    
+        <div class="country-row">
+           <a> <span class="country-name">Hong Kong</span> </a>
+          <a>  <span class="country-name">India</span> </a>
+           <a>  <span class="country-name">Ireland</span> </a>
+           <a>  <span class="country-name">Italy</span> </a>
+        </div>
+    
+        <div class="country-row">
+          <a>  <span class="country-name">Malaysia/span> </a>
+           <a>  <span class="country-name">Mexico</span> </a>
+           <a><span class="country-name">Netherlands</span> </a>
+           <a><span class="country-name">Singapore</span> </a>
+        </div>
+    
+        <div class="country-row">
+            <a>  <span class="country-name">Spain/span> </a>
+             <a>  <span class="country-name">Switzerland</span> </a>
+             <a><span class="country-name">United States</span> </a>
+             <a><span class="country-name">United Kingdom</span> </a>
+          </div>
+        <!-- Add more rows as needed -->
+         
+    </div>
+    
+    </div>
+    
+
+<section class="Descipline-section">
+    <div class="D-container">
+        <h1>Scholarships Disciplines</h1><br>
+        <div class="slider-container">
+            <!-- <button class="arrow left-arrow" onclick="slideLeft()">&#8249;</button> -->
+            <!-- <div class="slider"> -->
+                <div class="container">
+                <div class="box">
+                  <a href="https://ielc.co.id/en/5-things-you-must-do-to-win-an-overseas-scholarship/"><br>
+                    <h3>Step 1</h3><br>
+                    <h4>Join a student's Organization</h4><br><br>
+                    <p> It boots your leadership skills, which is usually a scholarship requirement.</p>
+                </div>
+                <div class="box">
+                   <a href="https://ielc.co.id/en/5-things-you-must-do-to-win-an-overseas-scholarship/">
+                    <h3>Step 2</h3><br> 
+                    <h4>Make an effort to get stellar referances</h4><br><br>
+                    <p> Show that you're a capble student/employee with a drive.</p>               
+                 </div>
+                <div class="box">
+                    <a href="https://ielc.co.id/en/5-things-you-must-do-to-win-an-overseas-scholarship/"><br>
+                        <h3>Step 3</h3><br>
+                        <h4>Show your uniqueness & passion</h4><br><br>
+                        <p>When writing your personal essay, avoid cliches.</p>
+                </div>
+                <div class="box">
+                  <a href="https://ielc.co.id/en/5-things-you-must-do-to-win-an-overseas-scholarship/"> 
+                    <h3>Step 4</h3><br>
+                    <h4>Get your grades up</h4><br><br><br>
+                    <p> Reconize which subjects you can improve and work on them.</p>   
+                    </div>
+             
+              
+              
+            </div>
+            <!-- <button class="arrow right-arrow" onclick="slideRight()">&#8250;</button> -->
+        </div>
+    </div>
+</section>
+
+<section></section>
+</body>
+<script src="../js/search.js"></script>
+
+<script>
+
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navMenu = document.querySelector('.nav-menu');
+
+    menuToggle.addEventListener('click', () => {
+        navMenu.classList.toggle('active');
+    });
+</script>
+
+<script>
+    let programData = {}; // To store data from the JSON file
+
+    // Function to load JSON data based on the selected degree
+    function loadProgramData(degree) {
+        const jsonFile = degree === "Bachelor" ?
+            "{{ url_for('static', filename='json/bachelorProgrammes.json') }}" :
+            "{{ url_for('static', filename='json/masterProgrammes.json') }}";
+
+        $.getJSON(jsonFile, function(data) {
+            programData = data;
+            console.log(`Program data loaded for ${degree}:`, programData); // Log to verify data load
+        }).fail(function() {
+            console.error("Error loading the JSON file.");
+        });
+    }
+
+    $(document).ready(function() {
+        // Country options for Bachelor and default (Master/PhD)
+        const bachelorCountries =  ['Austria', 'Belgium', 'Canada', 'Cook Islands', 'Croatia', 'Estonia', 'Faroe Islands', 'Finland', 'France', 'Germany', 'Greece', 'Hungary', 'Ireland', 'Japan', 'Korea, Republic of', 'Latvia', 'Lithuania', 'Netherlands', 'New Zealand', 'Niue', 'Poland', 'Portugal', 'Romania', 'Saudi Arabia', 'Singapore', 'Slovakia', 'South Africa', 'Switzerland', 'Thailand', 'Uganda', 'United Arab Emirates', 'United Kingdom', 'United States'];
+
+        const defaultCountries =  ['Australia', 'Austria', 'Belgium', 'Canada', 'Croatia', 'Cyprus', 'Czech Republic', 'Denmark', 'Finland', 'France', 'Germany', 'Greece', 'Hong Kong (SAR)', 'Hungary', 'India', 'Ireland', 'Israel', 'Italy', 'Lebanon', 'Lithuania', 'Malaysia', 'Malta', 'Mexico', 'Netherlands', 'New Zealand', 'Norway', 'Online', 'Poland', 'Portugal', 'Saudi Arabia', 'Singapore', 'Slovenia', 'South Africa', 'Spain', 'Sweden', 'Switzerland', 'Thailand', 'United Arab Emirates', 'United Kingdom', 'United States'];
+
+        // Function to update the country dropdown based on the selected degree
+        function updateCountryDropdown(degree) {
+            const countries = degree === "Bachelor" ? bachelorCountries : defaultCountries;
+            const countrySelect = $('#countrySelect');
+            countrySelect.empty(); // Clear existing options
+            countries.forEach(function(country) {
+                countrySelect.append(new Option(country, country));
+            });
+        }
+
+        // Initialize with default JSON file and countries for non-Bachelor degree (Master/PhD)
+        loadProgramData("Master");
+        updateCountryDropdown("Master");
+
+        // Event listener for degree selection change
+        $('#degreeSelect').on('change', function() {
+            const selectedDegree = $(this).val();
+            loadProgramData(selectedDegree);
+            updateCountryDropdown(selectedDegree);
+        });
+
+        // Event listener for country selection change
+        $('#countrySelect').on('change', function() {
+            const selectedCountry = $(this).val();
+            const availablePrograms = programData[selectedCountry] || [];
+
+            if (availablePrograms.length > 0) {
+                // Enable the program input and initialize autocomplete
+                $('#programInput').prop('disabled', false).autocomplete({
+                    source: availablePrograms,
+                    minLength: 2 // Minimum 2 characters before autocomplete activates
+                });
+            } else {
+                // If no programs are available for the selected country
+                $('#programInput').prop('disabled', true).val('');
+                alert("No programs available for the selected country.");
+            }
+        });
+        
+    });
+</script>

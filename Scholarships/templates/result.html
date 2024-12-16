@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Programs List</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/media.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/programmes.css') }}">
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="home.html">  <div class="logo">Elysian<span>Scholars</span></div> </a>
+
+        <!-- Menu toggle button for smaller screens -->
+        <button class="menu-toggle" aria-label="Toggle navigation">
+            <span class="hamburger-icon">&#9776;</span>
+        </button>
+
+        <ul class="nav-menu">
+            <li><a href="#home">Explore</a></li>
+            <li><a href="#about">Decide</a></li>
+            <li><a href="#service">Apply</a></li>
+        </ul>
+
+        <div class="right-nav">
+            <a href="#contact" class="wishlist">Wishlist</a>
+            <a href="#" class="sign-in">Sign In</a>
+        </div>
+    </nav>
+  </header>
+
+  <h1>Master's degrees from all around the world</h1>
+  <div class="tabs">
+    <a href="programmes.html" class="tab-link">Programmes</a>
+    <a href="university.html" class="tab-link">Universities</a>
+  </div>
+  <div class="container">
+    <aside class="filter-sidebar">
+      <h2>Filter by</h2>
+      <ul class="filters">
+        <li>
+          <label for="discipline">Discipline</label>
+          <select id="discipline" class="filter-dropdown">
+            <option value="">Select Discipline</option>
+            <option value="computer-science">Computer Science</option>
+            <option value="business">Business</option>
+            <option value="engineering">Engineering</option>
+            <option value="medicine">Medicine</option>
+          </select>
+        </li>
+        <li>
+          <label for="location">Location</label>
+          <select id="location" class="filter-dropdown">
+            <option value="">Select Location</option>
+            <option value="usa">USA</option>
+            <option value="uk">UK</option>
+            <option value="canada">Canada</option>
+            <option value="australia">Australia</option>
+          </select>
+        </li>
+        <li>
+          <label for="tuition-fee">Tuition Fee</label>
+          <select id="tuition-fee" class="filter-dropdown">
+            <option value="">Select Fee Range</option>
+            <option value="0-10000">$0 - $10,000</option>
+            <option value="10000-20000">$10,000 - $20,000</option>
+            <option value="20000-30000">$20,000 - $30,000</option>
+            <option value="30000+">$30,000+</option>
+          </select>
+        </li>
+        <li>
+          <label for="duration">Duration</label>
+          <select id="duration" class="filter-dropdown">
+            <option value="">Select Duration</option>
+            <option value="1-year">1 year</option>
+            <option value="2-years">2 years</option>
+            <option value="3-years">3 years</option>
+          </select>
+        </li>
+        <li>
+          <label for="format">Format</label>
+          <select id="format" class="filter-dropdown">
+            <option value="">Select Format</option>
+            <option value="online">Online</option>
+            <option value="on-campus">On Campus</option>
+            <option value="blended">Blended</option>
+          </select>
+        </li>
+        <li>
+          <label for="attendance">Attendance</label>
+          <select id="attendance" class="filter-dropdown">
+            <option value="">Select Attendance</option>
+            <option value="full-time">Full-time</option>
+            <option value="part-time">Part-time</option>
+          </select>
+        </li>
+        <li>
+          <label for="degree-type">Degree Type</label>
+          <select id="degree-type" class="filter-dropdown">
+            <option value="">Select Degree Type</option>
+            <option value="bachelors">Bachelor's</option>
+            <option value="masters">Master's</option>
+            <option value="phd">PhD</option>
+          </select>
+        </li>
+        <li>
+          <label for="special-programmes">Special Programmes</label>
+          <select id="special-programmes" class="filter-dropdown">
+            <option value="">Select Programme</option>
+            <option value="scholarships">Scholarships</option>
+            <option value="internships">Internships</option>
+            <option value="exchange-programs">Exchange Programs</option>
+          </select>
+        </li>
+      </ul>
+    </aside>
+    
+
+    <main class="program-list">
+      {% if message %}
+          <p>{{ message }}</p>
+      {% else %}
+          <div class="card-container">
+              <div class="scholarship-cards">
+                  <h2>Available Scholarships</h2>
+                  {% for scholarship in scholarships %}
+                      <div class="card">
+                          <h3>{{ scholarship['Scholarship Name'] }}</h3>
+                          <p><strong>Location:</strong> {{ scholarship['Location'] }}</p>
+                          <p><strong>GPA Range:</strong> {{ scholarship['Acceptable GPA for Merit-based Scholarships'] }}</p>
+                          <a href="{{ scholarship['Scholarship Link'] }}" target="_blank">Learn More</a>
+                      </div>
+                  {% endfor %}
+              </div>
+  
+              <div class="programme-cards">
+                  <h2>Matching Programmes</h2>
+                  {% for programme in programmes %}
+                      <div class="card">
+                          <h3>{{ programme['Programme'] }}</h3>
+                          <p><strong>Location:</strong> {{ programme['Organization Location'] }}</p>
+                          <p><strong>Degree Level:</strong> {{ programme['Degree Level'] }}</p>
+                          <a href="{{ programme['Programme Link'] }}" target="_blank">Learn More</a>
+                      </div>
+                  {% endfor %}
+              </div>
+          </div>
+      {% endif %}
+      <a href="/">Go Back</a>
+  </main>
+  </div>
+  
+</body>
+<script>
+
+  const menuToggle = document.querySelector('.menu-toggle');
+  const navMenu = document.querySelector('.nav-menu');
+
+  menuToggle.addEventListener('click', () => {
+      navMenu.classList.toggle('active');
+  });
+</script>
+</html>

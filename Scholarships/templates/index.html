@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   EduXpress - Scholarship Planner
+  </title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&amp;display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/media.css') }}">
+ </head>
+ <body>
+        <div class="wrapper">
+        <img src="{{ url_for('static', filename='img/img1.png') }}" alt="">
+        <img src="{{ url_for('static', filename='img/img2.png') }}" alt="">
+        <img src="{{ url_for('static', filename='img/img3.png') }}" alt="">
+        <img src="{{ url_for('static', filename='img/img4.png') }}" alt="">
+        <img src="{{ url_for('static', filename='img/img5.png') }}" alt="">
+        <img src="{{ url_for('static', filename='img/img6.png') }}" alt="">
+        <img src="{{ url_for('static', filename='img/img7.png') }}" alt="">
+    </div>
+  <header>
+   <nav>
+    <div class="logo">
+     Elysian
+     <span>
+      Scholars
+     </span>
+    </div>
+    <!-- Menu toggle button for smaller screens -->
+    <button aria-label="Toggle navigation" class="menu-toggle">
+     <span class="hamburger-icon">
+      ☰
+     </span>
+    </button>
+    <ul class="nav-menu">
+     <li>
+      <a href="#country-selector">
+       Explore
+      </a>
+     </li>
+     <li>
+      <a href="#Descipline">
+       Decide
+      </a>
+     </li>
+     <li>
+      <a href="#Apply">
+       Apply
+      </a>  
+     </li>
+    </ul>
+    <div class="right-nav">
+     <!-- <a class="wishlist" href="#contact">
+      Wishlist
+     </a> -->
+     <a class="sign-in" href="{{ url_for('login') }}">
+      Sign In
+     </a>
+    </div>
+   </nav>
+  </header>
+  <section class="hero">
+   <div class="hero-text">
+    <h1>
+     We are building a scholarship planner!
+    </h1>
+    <p>
+     Professional networking will help you refine your skill set, stay on top of trends, and connect with highly engaged like-minded professionals.
+    </p>
+    <div class="cta-buttons">
+     <a class="btn primary-btn" href="{{ url_for('login') }}">
+      Get started now
+     </a>
+    </div>
+   </div>
+   <div class="hero-image">
+    <img src="{{ url_for('static', filename='img/home1.png') }}" alt="">
+</div>
+  </section>
+  <!-- Features Section -->
+  <section class="features">
+   <a class="feature-link" href="#Apply">
+    <div class="feature">
+     <h3>
+      How to Apply?
+     </h3>
+     <p>
+      "Transform your aspirations into reality: Apply now!"
+     </p>
+    </div>
+   </a>
+   <a class="feature-link" href="#Popular">
+    <div class="feature">
+     <h3>
+      Popular Scholarships
+     </h3>
+     <p>
+      "Explore your future with our top scholarships!"
+     </p>
+    </div>
+   </a>
+   <a class="feature-link" href="#Country">
+    <div class="feature">
+     <h3>
+      By Country
+     </h3>
+     <p>
+      "Discover scholarships tailored for your location!"
+     </p>
+    </div>
+   </a>
+   <a class="feature-link" href="#Discipline">
+    <div class="feature" id="Discipline">
+     <h3>
+      By Discipline
+     </h3>
+     <p>
+      "Discover scholarships that match your academic journey!"
+     </p>
+    </div>
+   </a>
+  </section>
+  <!-- Apply for Scholarships -->
+  <section class="apply-section" id="Apply">
+    <h2>Apply for Scholarships</h2>
+    <div class="apply-container" >
+        <div class="apply-card">
+            <img src="../static/img/scho.jpg" alt="What is a Scholarship?">
+            <h3>What is a Scholarship?</h3>
+            <p>Discover how scholarships provide financial aid based on merit or need, covering tuition and more.
+            </p>
+            <div class="card-footer">
+                <span class="read-time">9 min read</span>
+                <a href="https://www.youtube.com/watch?v=nEzmT03p3D0" class="cta-link">Learn more</a>
+            </div>
+        </div>
+        <div class="apply-card">
+            <img src="../static/img/apply.jpg" alt="How to Apply for Scholarships?">
+            <h3>How to Apply for Scholarships?</h3>
+            <p>Find out how to effectively apply for scholarships by locating the right ones and preparing the necessary documents.</p>
+            <div class="card-footer">
+                <span class="read-time">11 min read</span>
+                <a href="https://www.youtube.com/watch?v=PBqWcfa5lbA" class="cta-link">Get started</a>
+            </div>
+        </div>
+        <div class="apply-card">
+            <img src="../static/img/moti.png" alt="How to write a Scholarship Motivation Letter?">
+            <h3>How to write a Scholarship Motivation Letter?</h3>
+            <p>Create a persuasive motivation letter by sharing your story and showcasing your unique writing style.</p>
+            <div class="card-footer">
+                <span class="read-time">10 min read</span>
+                <a href="https://www.youtube.com/watch?v=fpmE0ug_wNc" class="cta-link">See how</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Popular Scholarship -->
+<section class="scholarships-section" id="Popular">
+<div class="scholarships-header">
+    <h2>Popular Scholarships</h2>
+    <a href="#" class="see-all-link">See all scholarships</a>
+</div>
+
+<div class="scholarships-container">
+    <!-- First scholarship -->
+    <a href="https://www.monash.edu/" class="scholarship-card">
+        <div class="scholarship-details">
+            <div class="card-header">
+               <h3>MRS Resident Advisor Scholarship</h3><br>
+                        <p class="scholarship-type"> Monash University</p>
+            </div>
+            <div class="scholarship-body">
+                <p class="deadline"><strong>Deadline:</strong> Not specified</p>
+            </div>
+            <div class="apply-section">
+                <button class="apply-btn" >See If You Qualify</button>
+            </div>
+        </div>
+        <img src="../static/img/scho1.jpg" alt="Coca-Cola Scholarship" class="scholarship-img">
+    </a>
+
+    <!-- Second scholarship -->
+    <a href="https://www.newcastle.edu.au/" class="scholarship-card">
+        <div class="scholarship-details">
+            <div class="card-header">
+                <h3>International Excellence Scholarship</h3><br>
+                <p class="scholarship-type">University of Newcastle</p>
+            </div>
+            <div class="scholarship-body">
+                <p class="deadline"><strong>Deadline:</strong>  Anytime</p>
+            </div>
+            <div class="apply-section">
+                <button class="apply-btn">See If You Qualify</button>
+            </div>
+        </div>
+        <img src="../static/img/scho2.jpg" alt="Dr Pepper Scholarship" class="scholarship-img">
+    </a>
+
+         <!-- Third scholarship -->
+         <a href="https://www.temple.edu/" class="scholarship-card">
+            <div class="scholarship-details">
+                <div class="card-header">
+                    <h3>Merit Scholarships</h3><br>
+                    <p class="scholarship-type">Temple University</p>
+                </div>
+                <div class="scholarship-body">
+                    <p class="deadline"><strong>Deadline:</strong>Not specified</p>
+                </div>
+                <div class="apply-section">
+                    <button class="apply-btn">See If You Qualify</button>
+                </div>
+            </div>
+            <img src="../static/img/scho4.png" alt="Dr Pepper Scholarship" class="scholarship-img">
+        </a>
+
+              <!-- Fourth scholarship -->
+              <a href="https://www.beds.ac.uk/" class="scholarship-card">
+                <div class="scholarship-details">
+                    <div class="card-header">
+                        <h3>Chevening Scholarships</h3><br>
+                        <p class="scholarship-type">University of Bedfordshire</p>
+                    </div>
+                    <div class="scholarship-body">
+                        <p class="deadline"><strong>Deadline:</strong>  Not specified</p>
+                    </div>
+                    <div class="apply-section">
+                        <button class="apply-btn">See If You Qualify</button>
+                    </div>
+                </div>
+                <img src="../static/img/scho3.jpg" alt="Dr Pepper Scholarship" class="scholarship-img">
+            </a>
+</div>
+</section>
+
+<!-- Country Selection -->
+
+<section class="country-section" id="Country">
+<div class="scholarships-header">
+    <h2> Popular Countries</h2>
+    <a href="#country-selector" class="see-all-link">View all countries</a>
+</div>    <div class="country-container">
+    <div class="country-card">
+     <a href=""><img src="https://flagcdn.com/w320/us.png" alt="USA Flag">
+        <p>United States</p>
+    </a> 
+    </div>
+    <div class="country-card">
+        <a href="">
+        <img src="https://flagcdn.com/w320/gb.png" alt="UK Flag">
+        <p>United Kingdom</p> </a>
+    </div>
+    <div class="country-card">
+        <a href="">
+        <img src="https://flagcdn.com/w320/ca.png" alt="Canada Flag">
+        <p>Canada</p> </a>
+    </div>
+    <div class="country-card">
+        <a href="">
+        <img src="https://flagcdn.com/w320/au.png" alt="Australia Flag">
+        <p>Australia</p>
+    </a>
+    </div>
+</div>
+</section>
+<!-- Country Selection 2 -->
+
+<div class="country-selector" id="country-selector">
+<h1>Explore Scholarships by Countries</h1>
+<div class="country-grid">
+    <div class="country-row">
+       <a>  <span class="country-name">Australia</span> </a>
+       <a> <span class="country-name">Canada</span> </a>
+        <a> <span class="country-name">Belgium</span> </a>
+        <a> <span class="country-name">Czech Republic</span> </a>
+    </div>
+
+    <div class="country-row">
+       <a> <span class="country-name">Finland</span> </a>
+        <a> <span class="country-name">France</span> </a>
+       <a>  <span class="country-name">Germany</span> </a>
+       <a>  <span class="country-name">Thailand</span> </a>
+    </div>
+
+    <div class="country-row">
+       <a> <span class="country-name">Hong Kong</span> </a>
+      <a>  <span class="country-name">India</span> </a>
+       <a>  <span class="country-name">Ireland</span> </a>
+       <a>  <span class="country-name">Italy</span> </a>
+    </div>
+
+    <div class="country-row">
+      <a>  <span class="country-name">Malaysia/span> </a>
+       <a>  <span class="country-name">Mexico</span> </a>
+       <a><span class="country-name">Netherlands</span> </a>
+       <a><span class="country-name">Singapore</span> </a>
+    </div>
+
+    <div class="country-row">
+        <a>  <span class="country-name">Spain/span> </a>
+         <a>  <span class="country-name">Switzerland</span> </a>
+         <a><span class="country-name">United States</span> </a>
+         <a><span class="country-name">United Kingdom</span> </a>
+      </div>
+    <!-- Add more rows as needed -->
+     
+</div>
+
+</div>
+
+<section class="Descipline-section" id="Descipline">
+<div class="D-container">
+    <h1>Scholarships Disciplines</h1>
+    <!-- <div class="slider-container"> -->
+        <!-- <button class="arrow left-arrow" onclick="slideLeft()">&#8249;</button> -->
+        <div class="container">
+            <div class="box">
+              <a href="https://ielc.co.id/en/5-things-you-must-do-to-win-an-overseas-scholarship/"><br>
+                <h3>Step 1</h3><br>
+                <h4>Join a student's Organization</h4><br><br>
+                <p> It boots your leadership skills, which is usually a scholarship requirement.</p>
+            </div>
+            <div class="box">
+               <a href="https://ielc.co.id/en/5-things-you-must-do-to-win-an-overseas-scholarship/">
+                <h3>Step 2</h3><br> 
+                <h4>Make an effort to get stellar referances</h4><br><br>
+                <p> Show that you're a capble student/employee with a drive.</p>               
+             </div>
+            <div class="box">
+                <a href="https://ielc.co.id/en/5-things-you-must-do-to-win-an-overseas-scholarship/"><br>
+                    <h3>Step 3</h3><br>
+                    <h4>Show your uniqueness & passion</h4><br><br>
+                    <p>When writing your personal essay, avoid cliches.</p>
+            </div>
+            <div class="box">
+              <a href="https://ielc.co.id/en/5-things-you-must-do-to-win-an-overseas-scholarship/"> 
+                <h3>Step 4</h3><br>
+                <h4>Get your grades up</h4><br><br><br>
+                <p> Reconize which subjects you can improve and work on them.</p>   
+                </div>
+         
+                
+          
+        </div>
+        <!-- <button class="arrow right-arrow" onclick="slideRight()">&#8250;</button> -->
+    </div>
+</div>
+</section>
+ </body>
+ <script>
+  const menuToggle = document.querySelector('.menu-toggle');
+    const navMenu = document.querySelector('.nav-menu');
+
+    menuToggle.addEventListener('click', () => {
+        navMenu.classList.toggle('active');
+    });
+ </script>
+ <script>
+  const slider = document.querySelector('.slider');
+
+function slideLeft() {
+    slider.scrollBy({
+        top: 0,
+        left: -slider.clientWidth,  // Scroll left by the width of one box
+        behavior: 'smooth'
+    });
+}
+
+function slideRight() {
+    slider.scrollBy({
+        top: 0,
+        left: slider.clientWidth,  // Scroll right by the width of one box
+        behavior: 'smooth'
+    });
+}
+ </script>
+</html>

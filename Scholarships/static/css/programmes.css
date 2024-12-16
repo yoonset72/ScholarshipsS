@@ -1,0 +1,292 @@
+/* Global Styles */
+@import url('https://fonts.googleapis.com/css2?family=Averia+Libre:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
+ 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Averia Libre";
+}
+ 
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+}
+ 
+/* Header */
+header {
+    padding: 20px;
+    background-color: #fff;
+    border-bottom: 1px solid #ddd;
+    text-align: center;
+}
+ 
+h1 {
+    font-size: 22px;
+    color: #3d4040;
+    font-weight: bold;
+    text-align: center;
+    margin: 20px 0;
+}
+ 
+/* Tabs */
+.tabs {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 10px;
+}
+ 
+.tab-link {
+    font-size: 18px;
+    text-decoration: none;
+    color: #8db2ba;
+    font-weight: bold;
+    position: relative;
+    padding: 5px 10px;
+}
+ 
+.tab-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 3px;
+    left: 0;
+    bottom: 0;
+    background-color: #8db2ba;
+    transition: width 0.3s ease;
+}
+ 
+.tab-link:hover::after,
+.tab-link.active::after {
+    width: 100%;
+}
+ 
+/* Container */
+.container {
+    display: flex;
+    gap: 30px; /* Space between the sidebar and the main content */
+    margin: 20px;
+}
+ 
+/* Sidebar Styles */
+.filter-sidebar {
+    margin-top: 20px;
+    flex: 0.8; /* Sidebar takes up 1/3 of the space */
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.filter-sidebar h2{
+    text-align: center;
+
+}
+ 
+.filters {
+    list-style: none;
+    padding: 20px;
+    line-height: 1.5;
+
+ 
+}
+ 
+.filter-dropdown {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+ 
+/* Main Content Styles */
+.program-list {
+    flex: 3; /* Main content takes up 2/3 of the space */
+    display: flex;
+    flex-direction: column; /* Aligns cards vertically */
+    gap: 30px;
+}
+ 
+/* .card-container {
+    display: flex; Align cards side by side
+    flex-direction: row; Place scholarships and programmes horizontally
+    gap: 20px; Space between the card sections
+} */
+ 
+.scholarship-cards,
+.programme-cards {
+    width: 100%;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.card {
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: stretch;
+    line-height: 30px;
+    height: 300px; /* Fixed height for consistent sizing */
+    overflow: hidden; /* Ensure content doesn't overflow */
+}
+
+.card h3 {
+    font-size: 20px;
+    color: #4a4a4a;
+    margin-bottom: 10px; /* Add some space between title and content */
+    white-space: nowrap; /* Prevent wrapping */
+    overflow: hidden; /* Hide overflow */
+    text-overflow: ellipsis; /* Add ellipsis for long titles */
+}
+
+.card p {
+    margin: 5px 0;
+    flex-grow: 1; /* Let paragraph grow to fill available space */
+    overflow: hidden; /* Prevent overflowing content */
+    text-overflow: ellipsis; /* Add ellipsis for long text */
+    white-space: nowrap; /* Prevent text wrapping */
+}
+
+.card a {
+    text-decoration: none;
+    background-color: #8acfdc;
+    color: white;
+    padding: 10px 20px; /* Button padding */
+    border: none;
+    font-size: 14px; /* Button font size */
+    border-radius: 8px;
+    cursor: pointer;
+    flex-shrink: 0; /* Ensure button doesn't shrink */
+    margin-top: 20px; /* Add spacing above the button */
+    align-self: flex-end; /* Position the button at the bottom-right */
+}
+
+.card a:hover {
+    background-color: #6a9099;
+}
+
+ 
+/* Back Button Styling */
+.back-btn {
+    position: absolute;
+    top: 20%; /* Adjust vertical position */
+    left: 80px; /* Move slightly to the right */
+    display: flex;
+    align-items: center;
+}
+
+.back-btn a {
+    text-decoration: none;
+    color: black; /* Icon color */
+    font-size: 18px; /* Size of the icon */
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.back-btn a:hover {
+    transform: scale(1.1); /* Slight zoom on hover */
+    color: #72bbca; /* Change color on hover */
+}
+
+.back-btn svg {
+    width: 30px; /* Adjusted size */
+    height: 30px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .back-btn {
+        top: 10%; /* Adjust top position on smaller screens */
+        left: 15px; /* Move slightly to the left */
+    }
+}
+
+ 
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column; /* Stack sidebar and main content on smaller screens */
+    }
+ 
+    .filter-sidebar {
+        margin-bottom: 20px; /* Space below the sidebar */
+    }
+ 
+    .card-container {
+        flex-direction: column; /* Stack cards vertically on smaller screens */
+    }
+}
+.details-container {
+  display: flex; /* Use flexbox layout */
+  justify-content: space-between; /* Space between the child divs */
+  margin-top: 10px; /* Optional: adds some space above the details */
+}
+ 
+.detail {
+  flex: 1; /* Equal width for both detail divs */
+  margin-right: 10px; /* Space between the detail divs */
+}
+ 
+/* Remove margin on the last detail div */
+.detail:last-child {
+  margin-right: 0; /* Prevent extra space on the last item */
+}
+ 
+.pagination {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Align vertically */
+    margin: 20px 0; /* Add spacing above and below */
+    gap: 10px; /* Space between buttons and page number */
+    position: relative; /* Ensure it's positioned relative to the layout */
+    width: 100%; /* Make pagination span the container's width */
+}
+
+.previous-btn, .next-btn {
+    background-color: #8acfdc; /* Button background color */
+    color: white; /* Button text color */
+    border: none;
+    border-radius: 5px; /* Rounded corners */
+    padding: 10px 20px; /* Spacing inside buttons */
+    font-size: 16px;
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s ease; /* Smooth hover effect */
+}
+
+.previous-btn:hover, .next-btn:hover {
+    background-color: #6a9099; /* Darker color on hover */
+}
+
+#page-number {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333; /* Text color */
+}
+.breadcrumb {
+    display: flex;
+    align-items: center;
+  }
+  
+  .breadcrumb-item {
+    text-decoration: none;
+    color: #0073e6;
+    font-size: 16px;
+  }
+  
+  .breadcrumb-item:hover {
+    text-decoration: underline;
+  }
+  
+  .separator {
+    margin: 0 8px;
+    color: #555;
+  }
+  

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form</title>
+   
+    <!-- MATERIAL DESIGN ICONIC FONT -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='fonts/material-design-iconic-font/css/material-design-iconic-font.min.css') }}">
+   
+    <!-- STYLE CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+</head>
+<body>
+
+<div class="wrapper">
+    <div class="inner">
+        <div class="image-holder">
+            <img src="{{ url_for('static', filename='img/home2.png') }}" alt="Registration Form">
+        </div>
+        <form method="POST" action="/login">
+            <h3>Login Form</h3>
+            <!-- Flash Messages -->
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    <div>
+                        {% for category, message in messages %}
+                            <p class="{{ category }}" style="color: red; margin-top: 10px;">{{ message }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            {% endwith %}
+ 
+            <!-- Form Fields -->
+            <div class="form-wrapper">
+                <input type="email" name="email" placeholder="Email Address" class="form-control" required>
+                <i class="zmdi zmdi-email"></i>
+            </div>
+            <div class="form-wrapper">
+                <input type="password" name="password" placeholder="Password" class="form-control" required>
+                <i class="zmdi zmdi-lock"></i>
+            </div>
+ 
+            <!-- Submit Button -->
+            <button type="submit">Login
+                <i class="zmdi zmdi-arrow-right"></i>
+            </button>
+ 
+            <!-- Link to Sign Up Page -->
+            <div id="sign-in">
+                <a href="{{ url_for('signup') }}">New to us?</a>
+            </div>
+        </form>
+    </div>
+</div>
+ 
+</body>
+</html>
